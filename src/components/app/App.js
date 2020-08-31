@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.contacts !== this.state.contacts) {
+    if (prevState.contacts !== this.props.contacts) {
       localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
     }
   }
@@ -88,12 +88,12 @@ class App extends Component {
         />
         {/* {this.props.filteredContacts && ( */}
         <CSSTransition
-          in={this.props.filteredContacts.length > 1}
+          in={this.props.filteredContacts.length >= 1}
           timeout={250}
           classNames="findContact"
           unmountOnExit
         >
-          {/* {this.props.filteredContacts.length > 1 && ( */}
+          {/* {this.props.filteredContacts.length > 0 && ( */}
           <FindContactInput
             value={this.props.filter}
             onChangeFilter={this.changeFilter}
