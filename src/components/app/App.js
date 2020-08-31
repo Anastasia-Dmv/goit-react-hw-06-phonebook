@@ -86,22 +86,21 @@ class App extends Component {
         // addContact={this.addContact}
         // contacts={this.state.contacts}
         />
-        {/* {this.props.contacts && (
-          <CSSTransition
-            in={this.props.contacts.length > 1}
-            timeout={250}
-            classNames="findContact"
-            unmountOnExit
-          >
-            {this.props.contacts.length > 1 && (*/}
-        <FindContactInput
-          value={this.props.filter}
-          onChangeFilter={this.changeFilter}
-        />
-        {/* 
-            )}
-          </CSSTransition>
-        )} */}
+        {/* {this.props.filteredContacts && ( */}
+        <CSSTransition
+          in={this.props.filteredContacts.length > 1}
+          timeout={250}
+          classNames="findContact"
+          unmountOnExit
+        >
+          {/* {this.props.filteredContacts.length > 1 && ( */}
+          <FindContactInput
+            value={this.props.filter}
+            onChangeFilter={this.changeFilter}
+          />
+          {/* )} */}
+        </CSSTransition>
+        {/* )} */}
         {/* <CSSTransition in={showContacts} inmountOnExit> */}
         {/* {this.state.contacts && ( */}
         <ContactsList
