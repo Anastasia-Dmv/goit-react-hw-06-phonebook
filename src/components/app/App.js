@@ -97,8 +97,8 @@ class App extends Component {
         >
           {/* {this.props.filteredContacts.length > 0 && ( */}
           <FindContactInput
-            value={this.props.filter}
-            onChangeFilter={this.changeFilter}
+          // value={this.props.filter}
+          // onChangeFilter={this.changeFilter}
           />
           {/* )} */}
         </CSSTransition>
@@ -122,12 +122,10 @@ const mapStateToProps = (state) => {
   );
   return {
     filteredContacts: getfilteredContacts,
-    filter: state.contacts.filter,
+    // filter: state.contacts.filter,
   };
 };
-const mapDispatchToProps = {
-  onChangeFilter: contactActions.changeFilter,
-};
+
 //const mapDispatchToProps = {};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
 //export default App;

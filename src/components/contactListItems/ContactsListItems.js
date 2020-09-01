@@ -2,7 +2,7 @@ import React from "react";
 // import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
 import contactActions from "../../redux/contact/contact-actions";
-const ContactsListItems = ({ name, number, deleteContact }) => {
+const ContactsListItems = ({ id, name, number, deleteContact }) => {
   // render() {
   //   const {
   //     contact: { name, id, number },
@@ -16,7 +16,7 @@ const ContactsListItems = ({ name, number, deleteContact }) => {
         className="deleteBtn"
         type="button"
         // id={id}
-        onClick={(e) => deleteContact(e.target.id)}
+        onClick={() => deleteContact(id)}
       >
         x
       </button>
