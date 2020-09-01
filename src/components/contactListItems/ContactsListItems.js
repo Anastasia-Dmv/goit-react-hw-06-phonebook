@@ -25,7 +25,6 @@ const ContactsListItems = ({ name, number, deleteContact }) => {
 };
 // }
 const mapStateToProps = (state, ownProps) => {
-  // contacts: state.contacts.items
   const item = state.contacts.items.find((item) => item.id === ownProps.id);
   console.log("item", item);
   console.log("item", item);

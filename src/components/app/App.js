@@ -23,19 +23,20 @@ class App extends Component {
     showContacts: false,
   };
 
-  componentDidMount() {
-    const persistedContacts = localStorage.getItem("contacts");
-    if (persistedContacts) {
-      console.log("persistedContacts", persistedContacts);
-      this.props.saveInStorage(JSON.parse(persistedContacts));
-    }
-  }
+  // componentDidMount() {
+  //   const persistedContacts = localStorage.getItem("contacts");
+  //   if (persistedContacts) {
+  //     console.log("persistedContacts", persistedContacts);
+  //     this.props.saveInStorage(JSON.parse(persistedContacts));
+  //   }
+  // }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.contacts !== this.props.contacts) {
-      localStorage.setItem("contacts", JSON.stringify(this.props.contacts));
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevProps.contacts !== this.props.contacts) {
+  //     console.log("this.props.contacts", this.props.contacts);
+  //     localStorage.setItem("contacts", JSON.stringify(this.props.contacts));
+  //   }
+  // }
   // addContact = (name, number) => {
   //   const contact = {
   //     name: name,
