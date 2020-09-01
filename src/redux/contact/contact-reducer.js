@@ -11,6 +11,7 @@ const items = createReducer([], {
   ],
   [actionTypes.deleteContact]: (state, action) =>
     state.filter((contact) => contact.id !== action.payload),
+  [actionTypes.saveInStorage]: (state, action) => action.payload,
 });
 
 const filter = createReducer("", {

@@ -13,8 +13,8 @@ const addContact = createAction("contact/AddContact", (name, number) => ({
 }));
 const deleteContact = createAction("contact/Delete");
 const changeFilter = createAction("contact/changeFilter");
-
-export default { addContact, deleteContact, changeFilter };
+const saveInStorage = createAction("contact/saveInStorage");
+export default { addContact, deleteContact, changeFilter, saveInStorage };
 //=============without toolkit====
 // const addContact = (name, number) => ({
 //   type: actionTypes.ADDCONTACT,
