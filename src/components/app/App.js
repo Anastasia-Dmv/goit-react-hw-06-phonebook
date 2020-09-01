@@ -114,20 +114,20 @@ class App extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  const { items, filter } = state.contacts;
+// const mapStateToProps = (state) => {
+//   const { items, filter } = state.contacts;
 
-  const getfilteredContacts = items.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
-  return {
-    filteredContacts: getfilteredContacts,
-    filter: state.contacts.filter,
-  };
-};
+//   const getfilteredContacts = items.filter((contact) =>
+//     contact.name.toLowerCase().includes(filter.toLowerCase())
+//   );
+//   return {
+//     filteredContacts: getfilteredContacts,
+//     filter: state.contacts.filter,
+//   };
+// };
 const mapDispatchToProps = {
   onChangeFilter: contactActions.changeFilter,
 };
 //const mapDispatchToProps = {};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
 //export default App;
