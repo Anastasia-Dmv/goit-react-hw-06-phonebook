@@ -1,23 +1,30 @@
 import { combineReducers } from "redux";
 //import actionTypes from "./contact-types";
 import actionTypes from "./contact-actions";
-
+//import contactsActions from "../contactsOperations/contactsOperation";
 import { createReducer } from "@reduxjs/toolkit";
+//import contactsOperation from "../../components/contactsOperations/contactsOperation";
 
 const items = createReducer([], {
-  [actionTypes.addContact]: (state, action) => [
+  [actionTypes.fetchContactsSuccess]: (state, action) => action.payload,
+  [actionTypes.addContactSuccess]: (state, action) => [
     ...state,
-    action.payload.contact,
+    action.payload,
   ],
   [actionTypes.deleteContact]: (state, action) =>
     state.filter((contact) => contact.id !== action.payload),
-  [actionTypes.saveInStorage]: (state, action) => action.payload,
+  //[actionTypes.saveInStorage]: (state, action) => action.payload,
 });
 
 const filter = createReducer("", {
   [actionTypes.changeFilter]: (state, action) => action.payload,
 });
 
+const loading = createReducer(false, {
+  [actionTypes.addContactRequest]: () => true,
+  [actionTypes.addContactSuccess]: () => false,
+  [actionTypes.addContactError]: () => false,
+});
 // {
 //   contacts: {
 //     items: [],
@@ -46,4 +53,5 @@ const filter = createReducer("", {
 export default combineReducers({
   items,
   filter,
+  loading,
 });

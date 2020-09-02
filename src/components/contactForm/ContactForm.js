@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
-import contactsActions from "../../redux/contact/contact-actions";
+//import contactsActions from "../../redux/contact/contact-actions";
+import contactsOperation from "../../redux/contactsOperations/contactsOperation";
 
 class ContactForm extends Component {
   formInitialState = {
@@ -29,7 +30,7 @@ class ContactForm extends Component {
       return this.setState({ ...this.formInitialState });
     }
 
-    this.props.addContact(name, number);
+    this.props.onAddContact(name, number);
     this.setState({ name: "", number: "" });
   };
   toggleAlert = () => {
@@ -86,6 +87,6 @@ const mapStateToProps = (state) => ({
   filter: state.contacts.filter,
 });
 const mapDispathToProps = {
-  addContact: contactsActions.addContact,
+  onAddContact: contactsOperation.addContact,
 };
 export default connect(mapStateToProps, mapDispathToProps)(ContactForm);

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 //import { v4 as uuidv4 } from "uuid";
 import { connect } from "react-redux";
+import Loader from "react-loader-spinner";
 //import contactsActions from "../../redux/contact/contact-actions";
 
 import MainTitle from "../mainTitle/MainTitle";
@@ -8,7 +9,8 @@ import ContactForm from "../contactForm/ContactForm";
 import FindContactInput from "../findContactInput/FindContactInput";
 import ContactsList from "../contactsList/ContactsList";
 import { CSSTransition } from "react-transition-group";
-import contactActions from "../../redux/contact/contact-actions";
+import contactsOperation from "../../redux/contactsOperations/contactsOperation";
+//import contactActions from "../../redux/contact/contact-actions";
 //import { items } from "../../redux/contact/contact-reducer";
 
 class App extends Component {
@@ -22,7 +24,9 @@ class App extends Component {
     // filter: "",
     showContacts: false,
   };
-
+  componentDidMount() {
+    this.props.onFetchContacts();
+  }
   // componentDidMount() {
   //   const persistedContacts = localStorage.getItem("contacts");
   //   if (persistedContacts) {
@@ -72,6 +76,7 @@ class App extends Component {
     //const { filter, contacts } = this.state;
 
     //const filteredContacts = this.getFilteredContacts();
+    // const { IsLoadingContacts } = this.props;
     return (
       <div>
         <CSSTransition
@@ -83,11 +88,14 @@ class App extends Component {
         >
           <MainTitle />
         </CSSTransition>
-
+        {this.props.IsLoadingContacts && (
+          <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+        )}
         <ContactForm
         // addContact={this.addContact}
         // contacts={this.state.contacts}
         />
+
         {/* {this.props.filteredContacts && ( */}
         <CSSTransition
           in={this.props.filteredContacts.length >= 1}
@@ -105,6 +113,7 @@ class App extends Component {
         {/* )} */}
         {/* <CSSTransition in={showContacts} inmountOnExit> */}
         {/* {this.state.contacts && ( */}
+
         <ContactsList
         // deleteContact={this.handleDelete} contacts={contacts}
         />
@@ -115,17 +124,25 @@ class App extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  const { items, filter } = state.contacts;
+  console.log("state", state);
+  const {
+    items,
+    //filter
+  } = state.contacts;
 
-  const getfilteredContacts = items.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
+  const getfilteredContacts = items.filter(
+    (contact) => console.log("contact", contact)
+    // contact.name.toLowerCase().includes(filter.toLowerCase())
   );
   return {
     filteredContacts: getfilteredContacts,
-    // filter: state.contacts.filter,
+    IsLoadingContacts: state.contacts.loading,
+    filter: state.contacts.filter,
   };
 };
 
-//const mapDispatchToProps = {};
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = {
+  onFetchContacts: contactsOperation.fetchContacts,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 //export default App;

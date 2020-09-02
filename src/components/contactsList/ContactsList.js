@@ -5,14 +5,14 @@ import { connect } from "react-redux";
 //import contactActions from "../../redux/contact/contact-actions";
 
 const ContactsList = ({
-  contacts,
+  items,
   // deleteContact
 }) => {
   // render() {
   //   const { contacts, deleteContact } = this.props;
   return (
     <TransitionGroup component="ul" className="contacts-list">
-      {contacts.map(({ id }) => (
+      {items.map(({ id }) => (
         <CSSTransition
           key={id}
           classNames="taskList-fade"
@@ -41,7 +41,7 @@ const mapStateToProps = (state) => {
   );
   console.log("getFilteredContact", getFilteredContact);
   return {
-    contacts: getFilteredContact,
+    items: getFilteredContact,
   };
 };
 // const getFilteredContacts = (state) => {

@@ -1,20 +1,39 @@
 //import actionTypes from "./contact-types";
-import { v4 as uuidv4 } from "uuid";
+//import { v4 as uuidv4 } from "uuid";
 import { createAction } from "@reduxjs/toolkit";
 
-const addContact = createAction("contact/AddContact", (name, number) => ({
-  payload: {
-    contact: {
-      name: name,
-      number: number,
-      id: uuidv4(),
-    },
-  },
-}));
+const addContactRequest = createAction("contacts/addRequest");
+const addContactSuccess = createAction("contacts/addSuccess");
+const addContactError = createAction("contacts/addError");
+
+const fetchContactsRequest = createAction("contactfetchRequest");
+const fetchContactsSuccess = createAction("contacts/fetchSuccess");
+const fetchContactsError = createAction("contacts/fetchError");
+
+// const addContact = createAction("contact/AddContact", (name, number) => ({
+//   payload: {
+//     contact: {
+//       name: name,
+//       number: number,
+//       id: uuidv4(),
+//     },
+//   },
+// }));
 const deleteContact = createAction("contact/Delete");
 const changeFilter = createAction("contact/changeFilter");
-const saveInStorage = createAction("contact/saveInStorage");
-export default { addContact, deleteContact, changeFilter, saveInStorage };
+//const saveInStorage = createAction("contact/saveInStorage");
+export default {
+  addContactError,
+  addContactSuccess,
+  addContactRequest,
+  //addContact,
+  deleteContact,
+  changeFilter,
+  //saveInStorage,
+  fetchContactsRequest,
+  fetchContactsSuccess,
+  fetchContactsError,
+};
 //=============without toolkit====
 // const addContact = (name, number) => ({
 //   type: actionTypes.ADDCONTACT,
