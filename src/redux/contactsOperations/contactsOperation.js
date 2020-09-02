@@ -20,7 +20,16 @@ const fetchContacts = () => (dispatch) => {
     .then(({ data }) => dispatch(contactsActions.fetchContactsSuccess(data)))
     .catch((error) => dispatch(contactsActions.fetchContactsError(error)));
 };
+
+const removeContact = (id) => (dispatch) => {
+  dispatch(contactsActions.removeContactRequest());
+  axios
+    .delete(`http://localhost:2000/contacts/${id}`)
+    .then(() => dispatch(contactsActions.removeContactSuccess(id)))
+    .catch((error) => dispatch(contactsActions.removeContactError(error)));
+};
 export default {
   addContact,
   fetchContacts,
+  removeContact,
 };

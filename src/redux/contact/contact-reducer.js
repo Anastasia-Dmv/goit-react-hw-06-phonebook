@@ -11,7 +11,7 @@ const items = createReducer([], {
     ...state,
     action.payload,
   ],
-  [actionTypes.deleteContact]: (state, action) =>
+  [actionTypes.removeContactSuccess]: (state, action) =>
     state.filter((contact) => contact.id !== action.payload),
   //[actionTypes.saveInStorage]: (state, action) => action.payload,
 });
@@ -24,6 +24,9 @@ const loading = createReducer(false, {
   [actionTypes.addContactRequest]: () => true,
   [actionTypes.addContactSuccess]: () => false,
   [actionTypes.addContactError]: () => false,
+  [actionTypes.removeContactRequest]: () => true,
+  [actionTypes.removeContactSuccess]: () => false,
+  [actionTypes.removeContactError]: () => false,
 });
 // {
 //   contacts: {

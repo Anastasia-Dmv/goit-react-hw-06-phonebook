@@ -1,7 +1,9 @@
 import React from "react";
 // import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
-import contactActions from "../../redux/contact/contact-actions";
+import contactsOperation from "../../redux/contactsOperations/contactsOperation";
+//import contactActions from "../../redux/contact/contact-actions";
+
 const ContactsListItems = ({ id, name, number, deleteContact }) => {
   // render() {
   //   const {
@@ -31,6 +33,6 @@ const mapStateToProps = (state, ownProps) => {
   return { ...item };
 };
 const mapDispatchToPRops = (dispatch, ownProps) => ({
-  deleteContact: () => dispatch(contactActions.deleteContact(ownProps.id)),
+  deleteContact: (id) => dispatch(contactsOperation.removeContact(ownProps.id)),
 });
 export default connect(mapStateToProps, mapDispatchToPRops)(ContactsListItems);

@@ -27,6 +27,10 @@ class App extends Component {
   componentDidMount() {
     this.props.onFetchContacts();
   }
+  componentDidUpdate(prevProps, nextProps) {
+    console.log("prevProps", prevProps);
+    console.log("nextProps", nextProps);
+  }
   // componentDidMount() {
   //   const persistedContacts = localStorage.getItem("contacts");
   //   if (persistedContacts) {
@@ -88,9 +92,7 @@ class App extends Component {
         >
           <MainTitle />
         </CSSTransition>
-        {this.props.IsLoadingContacts && (
-          <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
-        )}
+
         <ContactForm
         // addContact={this.addContact}
         // contacts={this.state.contacts}
@@ -117,6 +119,15 @@ class App extends Component {
         <ContactsList
         // deleteContact={this.handleDelete} contacts={contacts}
         />
+        {this.props.IsLoadingContacts && (
+          <Loader
+            style={{ display: "flex ", justifyContent: "center" }}
+            type="ThreeDots"
+            color="#00BFFF"
+            height={80}
+            width={80}
+          />
+        )}
         {/* )} */}
         {/* </CSSTransition> */}
       </div>
