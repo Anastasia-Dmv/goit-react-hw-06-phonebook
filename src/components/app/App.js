@@ -104,7 +104,7 @@ class App extends Component {
         <CSSTransition
           in={
             this.props.filteredContacts.length > 1 ||
-            this.props.contacts.length > 0
+            this.props.contacts.length > 1
           }
           timeout={250}
           classNames="findContact"
