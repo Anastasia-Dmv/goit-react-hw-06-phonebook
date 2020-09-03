@@ -10,6 +10,8 @@ import FindContactInput from "../findContactInput/FindContactInput";
 import ContactsList from "../contactsList/ContactsList";
 import { CSSTransition } from "react-transition-group";
 import contactsOperation from "../../redux/contactsOperations/contactsOperation";
+import contactSelectors from "../../redux/contact/contact-selectors";
+
 //import contactActions from "../../redux/contact/contact-actions";
 //import { items } from "../../redux/contact/contact-reducer";
 
@@ -100,12 +102,15 @@ class App extends Component {
 
         {/* {this.props.filteredContacts && ( */}
         <CSSTransition
-          in={this.props.filteredContacts.length >= 1}
+          in={
+            this.props.filteredContacts.length > 1 ||
+            this.props.contacts.length > 0
+          }
           timeout={250}
           classNames="findContact"
           unmountOnExit
         >
-          {/* {this.props.filteredContacts.length > 0 && ( */}
+          {/* {this.props.contacts > 0 && ( */}
           <FindContactInput
           // value={this.props.filter}
           // onChangeFilter={this.changeFilter}
@@ -115,10 +120,13 @@ class App extends Component {
         {/* )} */}
         {/* <CSSTransition in={showContacts} inmountOnExit> */}
         {/* {this.state.contacts && ( */}
-
+        {/* {this.props.filteredContacts === [] ? (
+          <h4>...There is no result</h4>
+        ) : ( */}
         <ContactsList
         // deleteContact={this.handleDelete} contacts={contacts}
         />
+        {/* )} */}
         {this.props.IsLoadingContacts && (
           <Loader
             style={{ display: "flex ", justifyContent: "center" }}
@@ -136,19 +144,16 @@ class App extends Component {
 }
 const mapStateToProps = (state) => {
   console.log("state", state);
-  const {
-    items,
-    //filter
-  } = state.contacts;
+  const { items, filter } = state.contacts;
 
-  const getfilteredContacts = items.filter(
-    (contact) => console.log("contact", contact)
-    // contact.name.toLowerCase().includes(filter.toLowerCase())
+  const getfilteredContacts = items.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
   );
   return {
     filteredContacts: getfilteredContacts,
-    IsLoadingContacts: state.contacts.loading,
-    filter: state.contacts.filter,
+    IsLoadingContacts: contactSelectors.getLoading(state),
+    filter: contactSelectors.getFilter(state),
+    contacts: state.contacts.items,
   };
 };
 

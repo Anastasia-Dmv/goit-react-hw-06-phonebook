@@ -3,6 +3,7 @@ import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 //import contactsActions from "../../redux/contact/contact-actions";
 import contactsOperation from "../../redux/contactsOperations/contactsOperation";
+import contactSelectors from "../../redux/contact/contact-selectors";
 
 class ContactForm extends Component {
   formInitialState = {
@@ -82,9 +83,10 @@ class ContactForm extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => ({
-  contacts: state.contacts.items,
-  filter: state.contacts.filter,
+  contacts: contactSelectors.getContacts(state),
+  filter: contactSelectors.getFilter(state),
 });
 const mapDispathToProps = {
   onAddContact: contactsOperation.addContact,
